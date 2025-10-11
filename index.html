@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Espace de Psychothérapie – Accueil</title>
+  <meta name="description" content="Un espace doux et accueillant pour vous accompagner sur votre chemin de vie.">
+  <style>
+    @font-face {
+      font-family: "InterVar";
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: local("Inter"), local("Inter var"), url('https://rsms.me/inter/inter.var.woff2') format('woff2');
+    }
+    :root {
+      --bg: #ede9dd;
+      --text: #373020;
+      --text-muted: #514833;
+      --btn-bg: #373020;
+      --btn-text: #ede9dd;
+      --btn-bg-hover: #2f291a;
+      --ring: rgba(55, 48, 32, 0.25);
+      /* subtle accent washes */
+      --accent-red: rgba(243, 198, 186, 0.32);
+      --accent-blue: rgba(183, 199, 230, 0.28);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      padding: 0;
+      margin: 0;
+      /* Continuous gradient background across all sections */
+      background: linear-gradient(180deg, 
+        #f3eee3 0%, 
+        #ede9dd 20%, 
+        #f1e9df 40%, 
+        #ede9dd 60%, 
+        #f3eee3 80%, 
+        #ede9dd 100%);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+      color: var(--text);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    body {
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 20px 16px;
+    }
+
+    .header-nav {
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      height: 60px;
+      padding: 0;
+      box-shadow: 0 2px 8px rgba(55, 48, 32, 0.1);
+      position: relative;
+    }
+
+    .header-nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      height: 100%;
+    }
+
+    .header-nav .brand {
+      color: var(--btn-text);
+      opacity: 1;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: var(--btn-text);
+      text-decoration: none;
+      font-family: 'Montserrat', InterVar, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      transition: all 160ms ease;
+      padding: 0;
+      position: relative;
+    }
+
+    .nav-link:hover {
+      opacity: 0.8;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--btn-text);
+      transition: width 200ms ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .burger-menu {
+      display: none;
+      flex-direction: column;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      gap: 3px;
+    }
+
+    .burger-line {
+      width: 20px;
+      height: 2px;
+      background-color: var(--btn-text);
+      transition: all 200ms ease;
+    }
+
+    .burger-menu[aria-expanded="true"] .burger-line:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .burger-menu[aria-expanded="true"] .burger-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .burger-menu[aria-expanded="true"] .burger-line:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    @media (max-width: 768px) {
+      .burger-menu {
+        display: flex;
+      }
+      
+      .main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--btn-bg);
+        flex-direction: column;
+        gap: 0;
+        padding: 16px 0;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 200ms ease;
+        box-shadow: 0 4px 8px rgba(55, 48, 32, 0.1);
+        z-index: 1000;
+      }
+      
+      .main-nav.open {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .nav-link {
+        font-size: 16px;
+        padding: 12px 20px;
+        display: block;
+        text-align: center;
+        width: 100%;
+      }
+    }
+
+    .brand {
+      font-size: 18px;
+      letter-spacing: 0.4px;
+      color: var(--text);
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .hero {
+      padding: 32px 0 16px 0;
+      background: transparent;
+    }
+
+    .hero-card {
+      background: transparent;
+      backdrop-filter: none;
+      border-radius: 18px;
+      border: none;
+      box-shadow: none;
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      padding: 32px 28px;
+      display: grid;
+      gap: 18px;
+      text-align: center;
+      justify-items: center;
+    }
+    .hero > .container { display: flex; align-items: center; justify-content: center; }
+
+    /* eyebrow removed */
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 6vw, 48px);
+      line-height: 1.25;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .lead {
+      font-size: clamp(16px, 2.4vw, 19px);
+      color: var(--text-muted);
+      margin: 6px 0 0;
+      max-width: 72ch;
+      line-height: 1.5; /* slightly reduced from 1.6 */
+      letter-spacing: 0.1px; /* subtle refinement */
+    }
+
+    /* Apply Montserrat to small/subtle text */
+    .subtle-note, .lead, footer, .brand { font-family: 'Montserrat', InterVar, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(55,48,32,0.12);
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      text-decoration: none;
+      font-size: 16px;
+      font-family: 'Montserrat', InterVar, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      transition: background 160ms ease, transform 120ms ease, box-shadow 160ms ease;
+      box-shadow: 0 4px 16px rgba(55,48,32,0.18);
+    }
+
+    .btn:hover { background: var(--btn-bg-hover); transform: translateY(-1px); box-shadow: 0 6px 22px rgba(55,48,32,0.22), 0 0 0 4px rgba(55,48,32,0.08) inset; filter: brightness(1.03); }
+    .btn:active { transform: translateY(0); box-shadow: 0 2px 10px rgba(55,48,32,0.18); }
+    .btn:focus-visible { outline: none; box-shadow: 0 0 0 4px var(--ring); }
+
+    .subtle-note {
+      font-size: 14px;
+      color: var(--text-muted);
+      opacity: 0.9;
+    }
+
+    /* Shared section styles to maintain consistent foundations */
+    .section { 
+      padding: 32px 0 40px; 
+      background: transparent;
+    }
+    .section-inner { display: grid; gap: 14px; justify-items: center; text-align: center; }
+    .section-title { margin: 0; font-size: clamp(22px, 4.4vw, 32px); color: var(--text); font-weight: 600; }
+    .section .lead { max-width: 80ch; }
+
+    /* Section-local gradient accents (disabled for continuous gradient) */
+    .gradient-accent { 
+      position: relative; 
+      z-index: 0; 
+      background: transparent;
+    }
+    .gradient-accent::before {
+      display: none;
+    }
+    .accent-red-left-blue-right { --red-x: 12%; --red-y: 30%; --blue-x: 88%; --blue-y: 35%; }
+    .accent-red-right-blue-left { --red-x: 88%; --red-y: 30%; --blue-x: 12%; --blue-y: 35%; }
+    .accent-red-top-blue-bottom { --red-x: 50%; --red-y: 6%; --blue-x: 50%; --blue-y: 94%; }
+    /* Quote styling */
+    .quote { position: relative; padding: 28px 0 10px; display: grid; justify-items: center; text-align: center; }
+    .quote::before {
+      content: "“";
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 64px;
+      color: var(--text-muted);
+      opacity: 0.15;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .quote-text { font-style: italic; color: var(--text-muted); font-weight: 600; font-size: clamp(18px, 2.8vw, 22px); margin-top: 6px; }
+
+    /* Introduction (section 2) layout with right image */
+    .intro-grid { display: grid; gap: 14px; align-items: center; }
+    .intro-media { background: transparent; padding: 0; margin: 0; border: none; border-radius: 0; box-shadow: none; }
+    .intro-media img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 420px;
+      object-fit: cover;
+      margin: 0;
+      padding: 0;
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    /* Features section (third section) */
+    .section-subtitle { margin: 0; color: var(--text-muted); font-size: clamp(16px, 2.8vw, 18px); font-family: 'Montserrat', InterVar, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    .features { display: grid; gap: 14px; margin-top: 12px; }
+    .feature-card { border: 1px solid rgba(55,48,32,0.10); border-radius: 16px; padding: 16px 16px; transition: box-shadow 160ms ease, transform 120ms ease; }
+    .feature-card:hover { box-shadow: 0 8px 24px rgba(55,48,32,0.10); transform: translateY(-1px); }
+    .feature-title { margin: 0 0 4px 0; font-size: clamp(18px, 3.4vw, 22px); color: var(--text); font-weight: 600; }
+    .feature-desc { margin: 0; }
+    .focus-quote { font-style: italic; color: var(--text-muted); }
+
+    /* FAQ section */
+    .faq { display: grid; gap: 12px; margin-top: 12px; width: 100%; grid-template-columns: 1fr; justify-items: stretch; }
+    .faq-item { border: 1px solid rgba(55,48,32,0.10); border-radius: 16px; background: transparent; width: 100%; }
+    .faq-item[open] { background: transparent; }
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 36px 40px;
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif; /* serif for question */
+      font-weight: 600;
+      font-size: clamp(20px, 2.6vw, 28px);
+      line-height: 1.3;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      text-align: left;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary:after { content: "+"; font-weight: 600; color: var(--text-muted); transition: transform 160ms ease; }
+    .faq-item[open] summary:after { content: "–"; transform: rotate(0deg); }
+    .faq-content { padding: 0 40px 40px 40px; }
+    .faq-content p { margin: 0; color: var(--text-muted); }
+    .faq-content .lead { font-size: clamp(15px, 2.1vw, 17px); line-height: 1.55; }
+
+    @media (min-width: 720px) {
+      .container { padding: 24px 20px; }
+      .hero-inner { padding: 48px 48px; gap: 20px; }
+      .lead { max-width: 70ch; }
+      .section { padding: 48px 0 56px; }
+      .intro-grid { grid-template-columns: 1.1fr 0.9fr; gap: 18px; text-align: left; justify-items: start; }
+      #introduction .section-inner { justify-items: stretch; text-align: left; }
+      .features { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+      .feature-card { padding: 18px 20px; }
+      /* Desktop-style FAQ: two-column rows, visible answers, thin separators */
+      .faq { gap: 0; border: 1px solid rgba(55,48,32,0.10); border-radius: 16px; overflow: hidden; background: transparent; }
+      .faq-item { border: 0; border-bottom: 1px solid rgba(55,48,32,0.12); border-radius: 0; background: transparent; }
+      .faq-item:last-child { border-bottom: 0; }
+      .faq-item { display: grid; grid-template-columns: 1fr 1.25fr; align-items: start; }
+      .faq-item summary { cursor: default; padding: 44px 48px; text-align: left; justify-content: flex-start; pointer-events: none; }
+      .faq-item summary:after { content: '' !important; }
+      .faq-item .faq-content { display: block; padding: 44px 48px; }
+      /* Ensure width stability */
+      .faq, .faq-item { width: 100%; }
+    }
+
+    @media (min-width: 1024px) {
+      .container { padding: 28px 24px; }
+      .features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    /* Optimize layout on very small phones and short viewports */
+    @media (max-width: 360px) {
+      .btn { padding: 10px 14px; font-size: 15px; }
+      .hero-inner { gap: 14px; }
+    }
+    @media (max-height: 600px) {
+      .hero-inner { padding: 24px 20px; gap: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .btn { transition: none; }
+    }
+
+    /* Mes accompagnements thérapeutiques (optimized) */
+    .accomp { 
+      position: relative; 
+      background: transparent;
+    }
+    .accomp .accomp-container { max-width: 1200px; margin: 0 auto; padding-inline: clamp(16px, 5vw, 48px); }
+    .accomp .accomp-title { margin: 0 0 8px 0; font-size: clamp(24px, 5vw, 36px); color: var(--text); font-weight: 600; text-align: center; }
+    .accomp .accomp-grid { display: grid; gap: clamp(14px, 3vw, 28px); }
+    .accomp .service-item { 
+      background: transparent; 
+      border-radius: 0; 
+      box-shadow: none; 
+      padding: 0;
+      display: grid; 
+      grid-template-columns: 1fr; 
+      gap: 14px; 
+      align-items: center;
+    }
+    .accomp .service-text { 
+      display: grid; 
+      gap: 10px; 
+      text-align: left; 
+      max-width: 640px; 
+      line-height: 1.6; 
+    }
+    .accomp .service-title { margin: 0; font-size: clamp(18px, 3.6vw, 26px); color: var(--text); font-weight: 600; }
+    .accomp .service-desc { margin: 0; color: var(--text-muted); line-height: 1.6; }
+    .accomp .service-media { width: 100%; }
+    .accomp .service-media img { 
+      display: block; 
+      width: 100%; 
+      max-width: 420px; 
+      min-width: 260px; 
+      aspect-ratio: 4/3; 
+      object-fit: contain; 
+      margin-inline: auto; 
+      background: transparent; 
+      border: none; 
+      border-radius: 0; 
+      box-shadow: none; 
+    }
+
+    @media (min-width: 768px) {
+      .accomp .service-item { 
+        grid-template-columns: 1fr 1fr; 
+        gap: clamp(24px, 4vw, 56px); 
+        align-items: center; 
+      }
+      .accomp .service-text { max-width: none; }
+      .accomp .service-media img { min-width: 280px; }
+      /* Alternate layout for even rows */
+      .accomp .service-item:nth-child(even) { 
+        grid-auto-flow: dense; 
+      }
+      .accomp .service-item:nth-child(even) .service-media { order: 1; }
+      .accomp .service-item:nth-child(even) .service-text { order: 2; }
+    }
+
+    @media (max-width: 767px) {
+      .accomp .service-text { max-width: 70ch; margin: 0 auto; text-align: center; }
+      /* Force text above image on mobile regardless of desktop order */
+      .accomp .service-item { grid-template-columns: 1fr; }
+      .accomp .service-item .service-text { order: 1; }
+      .accomp .service-item .service-media { order: 2; }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .accomp .service-item { opacity: 0; transform: translateY(10px); transition: opacity 260ms ease, transform 260ms ease; }
+      .accomp .service-item.is-visible { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Social proof section */
+    .testimonials { display: grid; gap: clamp(16px, 3vw, 24px); margin-top: 12px; }
+    .testimonial { 
+      background: rgba(255,255,255,0.24); 
+      border: 1px solid rgba(55,48,32,0.08); 
+      border-radius: 18px; 
+      padding: clamp(20px, 4vw, 32px); 
+      text-align: center; 
+      transition: box-shadow 160ms ease, transform 120ms ease; 
+    }
+    .testimonial:hover { box-shadow: 0 8px 24px rgba(55,48,32,0.08); transform: translateY(-1px); }
+    .testimonial-title { 
+      font-weight: 600; 
+      color: var(--text); 
+      font-size: clamp(16px, 2.6vw, 20px); 
+      line-height: 1.4; 
+      margin: 0 0 12px 0; 
+    }
+    .testimonial-quote { 
+      font-style: italic; 
+      color: var(--text-muted); 
+      font-size: clamp(16px, 2.4vw, 18px); 
+      line-height: 1.6; 
+      margin: 0 0 16px 0; 
+    }
+    .testimonial-author { 
+      font-family: 'Montserrat', InterVar, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; 
+      font-size: 14px; 
+      color: var(--text); 
+      font-weight: 500; 
+      margin: 0; 
+    }
+
+    @media (min-width: 768px) {
+      .testimonials { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 3vw, 28px); }
+    }
+
+    /* Footer styles */
+    .footer { 
+      background: var(--btn-bg); 
+      color: var(--btn-text); 
+      padding: clamp(32px, 6vw, 48px) 0 clamp(20px, 4vw, 32px) 0; 
+      margin-top: clamp(40px, 8vw, 60px); 
+      border-top: 2px solid rgba(237,233,221,0.3); 
+      position: relative; 
+    }
+    .footer::before { 
+      content: ""; 
+      position: absolute; 
+      top: 0; 
+      left: 0; 
+      right: 0; 
+      height: 1px; 
+      background: linear-gradient(90deg, transparent 0%, rgba(237,233,221,0.4) 50%, transparent 100%); 
+    }
+    .footer-content { 
+      max-width: 1120px; 
+      margin: 0 auto; 
+      padding: 0 clamp(16px, 4vw, 24px); 
+    }
+    .footer-columns { 
+      display: grid; 
+      gap: clamp(24px, 4vw, 40px); 
+      margin-bottom: clamp(24px, 4vw, 32px); 
+    }
+    .footer-column { 
+      display: grid; 
+      gap: 12px; 
+    }
+    .footer-title { 
+      margin: 0; 
+      font-size: clamp(16px, 2.2vw, 18px); 
+      font-weight: 600; 
+      color: var(--btn-text); 
+      font-family: 'Montserrat', InterVar, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; 
+    }
+    .footer-text { 
+      margin: 0; 
+      color: var(--btn-text); 
+      opacity: 0.8; 
+      line-height: 1.6; 
+      font-size: clamp(14px, 1.8vw, 16px); 
+    }
+    .footer-links { 
+      list-style: none; 
+      padding: 0; 
+      margin: 0; 
+      display: grid; 
+      gap: 8px; 
+    }
+    .footer-links a { 
+      color: var(--btn-text); 
+      text-decoration: none; 
+      font-size: clamp(14px, 1.8vw, 16px); 
+      transition: opacity 160ms ease; 
+    }
+    .footer-links a:hover { 
+      opacity: 0.7; 
+    }
+    .footer-contact { 
+      display: grid; 
+      gap: 6px; 
+    }
+    .footer-contact p { 
+      margin: 0; 
+      color: var(--btn-text); 
+      opacity: 0.8; 
+      font-size: clamp(14px, 1.8vw, 16px); 
+    }
+    .footer-separator { 
+      height: 1px; 
+      background: rgba(237,233,221,0.3); 
+      margin: clamp(20px, 3vw, 28px) 0; 
+    }
+    .footer-bottom { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      flex-wrap: wrap; 
+      gap: 12px; 
+    }
+    .footer-brand { 
+      font-size: clamp(18px, 2.4vw, 22px); 
+      font-weight: 600; 
+      color: var(--btn-text); 
+      font-family: 'Montserrat', InterVar, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-logo {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+    .footer-copyright { 
+      color: var(--btn-text); 
+      opacity: 0.8; 
+      font-size: clamp(12px, 1.6vw, 14px); 
+    }
+
+    @media (min-width: 768px) {
+      .footer-columns { 
+        grid-template-columns: repeat(3, 1fr); 
+        align-items: start; 
+      }
+    }
+
+    @media (max-width: 767px) {
+      .footer-bottom { 
+        flex-direction: column; 
+        text-align: center; 
+      }
+    }
+
+    /* Final CTA logo background */
+    #final-cta {
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .cta-logo-bg {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 200px;
+      height: 200px;
+      background-image: url('images/logo2.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.2;
+      transform: rotate(-30deg);
+      z-index: 10;
+      pointer-events: none;
+      filter: none;
+    }
+
+    #final-cta .container {
+      position: relative;
+      z-index: 2;
+    }
+  </style>
+  <link rel="icon" href="data:,">
+  <meta name="theme-color" content="#ede9dd">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header-nav" aria-label="En-tête">
+    <div class="container">
+      <div class="brand">
+        <img src="images/logo.png" alt="Logo Nina Alaoui" class="brand-logo">
+        Nina Alaoui
+      </div>
+      <button class="burger-menu" aria-label="Menu de navigation" aria-expanded="false">
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+        <span class="burger-line"></span>
+      </button>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="#accompagnements-detail" class="nav-link smooth-scroll">Mes accompagnements</a>
+        <a href="#testimonials" class="nav-link smooth-scroll">Témoignages</a>
+        <a href="#faq" class="nav-link smooth-scroll">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero gradient-accent accent-red-left-blue-right" id="hero">
+      <div class="container">
+        <div class="hero-card" role="region" aria-label="Section d’introduction">
+          <div class="hero-inner">
+            <h1>Un espace doux pour vous accompagner sur votre chemin de vie.</h1>
+            <p class="lead">Chaque personne est unique, et votre bien-être mérite un accompagnement respectueux, spontané et vrai. Je vous invite à co-créer un espace de confiance et de bienveillance où vous pouvez vous sentir libre d’être vous-même.</p>
+            <div class="cta-row">
+              <a class="btn" href="https://wa.me/212665306890" target="_blank" aria-label="Commencer votre parcours">Faire votre premier pas</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+<!-- Introduction à l’accompagnement -->
+  <section class="section gradient-accent accent-red-right-blue-left" id="introduction" aria-label="Introduction à l’accompagnement">
+    <div class="container">
+      <div class="section-inner">
+        <div class="intro-grid">
+          <blockquote class="quote">
+            <p class="quote-text lead">Demander de l’aide, c’est un pas courageux. Avec moi, votre parcours est une collaboration bienveillante, sans jugement ni précipitation. Chaque séance est adaptée à vos besoins, dans le respect total de votre rythme et de votre singularité. Ensemble, nous explorerons ce qui est juste pour vous.</p>
+          </blockquote>
+          <div class="intro-media">
+            <img src="images/ninaPro.png" alt="Espace calme et apaisant illustrant l’accompagnement" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Mes accompagnements thérapeutiques -->
+  <section class="section accomp gradient-accent accent-red-left-blue-right" id="accompagnements-detail" aria-label="Mes accompagnements thérapeutiques">
+    <div class="accomp-container">
+      <h2 class="accomp-title">Mes accompagnements thérapeutiques</h2>
+      <div class="accomp-grid">
+        <!-- 1: Psychothérapie (ACP) - Text left, Image right -->
+        <article class="service-item" id="service-psy" aria-labelledby="svc-psy-title">
+          <div class="service-text">
+            <h3 id="svc-psy-title" class="service-title">Psychothérapie (ACP)</h3>
+            <p class="service-desc lead">Un accompagnement centré sur la personne, dans un espace d'écoute bienveillante pour accueillir vos émotions, mieux vous comprendre et retrouver votre équilibre intérieur.</p>
+          </div>
+          <div class="service-media">
+            <img src="images/psychotherapie.png" alt="Illustration pour Psychothérapie (ACP)" loading="lazy" decoding="async" fetchpriority="low">
+          </div>
+        </article>
+
+        <!-- 2: Art-thérapie - Image left, Text right -->
+        <article class="service-item" id="service-art" aria-labelledby="svc-art-title">
+          <div class="service-media">
+            <img src="images/art-thérapie.png" alt="Illustration pour Art-thérapie" loading="lazy" decoding="async" fetchpriority="low">
+          </div>
+          <div class="service-text">
+            <h3 id="svc-art-title" class="service-title">Art-thérapie</h3>
+            <p class="service-desc lead">Par l'expression créative et le geste spontané, l'art devient un chemin doux pour explorer vos émotions et révéler votre vérité intérieure.</p>
+          </div>
+        </article>
+
+        <!-- 3: Thérapie de la marche - Text left, Image right -->
+        <article class="service-item" id="service-walk" aria-labelledby="svc-walk-title">
+          <div class="service-text">
+            <h3 id="svc-walk-title" class="service-title">Thérapie de la marche</h3>
+            <p class="service-desc lead">Marcher dans la nature, c'est avancer aussi en soi : un moment d'apaisement et de dialogue sincère avec vous-même.</p>
+          </div>
+          <div class="service-media">
+            <img src="images/therapie_marche.png" alt="Illustration pour Thérapie de la marche" loading="lazy" decoding="async" fetchpriority="low">
+          </div>
+        </article>
+
+        <!-- 4: Thérapie de couple - Image left, Text right -->
+        <article class="service-item" id="service-couple" aria-labelledby="svc-couple-title">
+          <div class="service-media">
+            <img src="images/therapie_couple.png" alt="Illustration pour Thérapie de couple" loading="lazy" decoding="async" fetchpriority="low">
+          </div>
+          <div class="service-text">
+            <h3 id="svc-couple-title" class="service-title">Thérapie de couple</h3>
+            <p class="service-desc lead">Un espace respectueux pour libérer la parole, retrouver la confiance et cultiver une relation plus authentique.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <!-- CTA RDV -->
+  <section class="section gradient-accent accent-red-top-blue-bottom" id="cta-rdv" aria-label="Invitation à prendre rendez-vous">
+    <div class="container">
+      <div class="section-inner">
+        <h2 class="section-title">Prendre soin de vous, en douceur</h2>
+        <p class="lead">Si vous ressentez l'envie d'être accompagné·e avec calme et bienveillance, je vous accueille à votre rythme. Un premier échange suffit pour poser les bases d'un espace sûr, respectueux et sans jugement.</p>
+        <div class="cta-row">
+          <a class="btn" href="https://wa.me/212665306890" target="_blank" aria-label="Prenez votre rendez-vous">Prenez votre rendez-vous</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social proof -->
+  <section class="section gradient-accent accent-red-right-blue-left" id="testimonials" aria-label="Témoignages">
+    <div class="container">
+      <div class="section-inner">
+        <h2 class="section-title">Ce qu'ils disent</h2>
+        <div class="testimonials">
+          <article class="testimonial">
+            <h3 class="testimonial-title">J'ai retrouvé ma confiance</h3>
+            <p class="testimonial-quote">« Avec Nina, j'ai trouvé un espace où je peux être moi-même, sans crainte du jugement. Son approche douce et respectueuse m'a permis de comprendre mes émotions et de retrouver ma confiance. »</p>
+            <p class="testimonial-author">— Fatima, 34 ans</p>
+          </article>
+          
+          <article class="testimonial">
+            <h3 class="testimonial-title">J'ai découvert des parts de moi insoupçonnées</h3>
+            <p class="testimonial-quote">« L'art-thérapie m'a ouvert des portes que je ne soupçonnais pas. Nina m'a accompagnée avec bienveillance dans cette découverte de moi-même, à mon rythme. »</p>
+            <p class="testimonial-author">— Aicha, 28 ans</p>
+          </article>
+          
+          <article class="testimonial">
+            <h3 class="testimonial-title">J'ai retrouvé mon équilibre intérieur</h3>
+            <p class="testimonial-quote">« Les séances de marche dans la nature ont transformé ma relation à moi-même. Dans ce cadre apaisant, j'ai pu libérer des tensions et retrouver un équilibre intérieur. »</p>
+            <p class="testimonial-author">— Youssef, 41 ans</p>
+          </article>
+          
+          <article class="testimonial">
+            <h3 class="testimonial-title">Nous avons retrouvé notre authenticité</h3>
+            <p class="testimonial-quote">« La thérapie de couple nous a aidés à retrouver une communication authentique. Nina a créé un espace de confiance où nous avons pu nous révéler l'un à l'autre. »</p>
+            <p class="testimonial-author">— Khadija et Hassan, 35 et 37 ans</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- FAQ -->
+  <section class="section gradient-accent accent-red-left-blue-right" id="faq" aria-label="Questions fréquentes">
+    <div class="container">
+      <div class="section-inner">
+        <h2 class="section-title">Vous vous demandez peut-être…</h2>
+        <div class="faq">
+          <details class="faq-item">
+            <summary>Qu’est-ce qu’une psychothérapie ?</summary>
+            <div class="faq-content">
+              <p class="lead">Une démarche collaborative, où vous êtes acteur de votre mieux-être, accompagnée dans un cadre respectueux et sans jugement.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Qu’attendre de la première séance ?</summary>
+            <div class="faq-content">
+              <p class="lead">Un espace d’écoute pour exprimer vos besoins et poser ensemble les bases du travail commun.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Comment choisir entre les différentes thérapies ?</summary>
+            <div class="faq-content">
+              <p class="lead">Chaque parcours est unique : la psychothérapie classique, l’art-thérapie, la marche ou le travail de couple offrent des approches différentes selon ce qui vous parle.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Est-ce normal d’hésiter ou d’avoir de la honte ?</summary>
+            <div class="faq-content">
+              <p class="lead">Oui, c’est très courant. Vous êtes accueilli sans jugement, et ce pas vers l’aide est déjà un signe fort de bienveillance envers vous-même.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Combien de temps durent les séances ?</summary>
+            <div class="faq-content">
+              <p class="lead">En général, environ 50 minutes par séance, avec une fréquence qui s’adapte à vos besoins.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Le suivi est-il confidentiel ?</summary>
+            <div class="faq-content">
+              <p class="lead">Absolument, votre intimité est respectée, dans le cadre d’une relation professionnelle déontologique.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Still have questions -->
+  <section class="section gradient-accent accent-red-top-blue-bottom" id="final-cta" aria-label="Dernière invitation">
+    <div class="cta-logo-bg"></div>
+    <div class="container">
+      <div class="section-inner">
+        <h2 class="section-title">Vous avez encore des questions ?</h2>
+        <p class="lead">N'hésitez pas à me contacter pour échanger sur vos besoins et découvrir comment je peux vous accompagner dans votre cheminement personnel.</p>
+        <div class="cta-row">
+          <a class="btn" href="https://wa.me/212665306890" target="_blank" aria-label="Me contacter">Me contacter</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" aria-label="Pied de page">
+    <div class="footer-content">
+      <div class="footer-columns">
+        <div class="footer-column">
+          <h3 class="footer-title">À propos</h3>
+          <p class="footer-text">Un espace doux et bienveillant pour vous accompagner sur votre chemin de vie. Psychothérapie, art-thérapie, thérapie de la marche et thérapie de couple dans un cadre respectueux et sans jugement.</p>
+        </div>
+        
+        <div class="footer-column">
+          <h3 class="footer-title">Services</h3>
+          <ul class="footer-links">
+            <li>Psychothérapie (ACP)</li>
+            <li>Art-thérapie</li>
+            <li>Thérapie de la marche</li>
+            <li>Thérapie de couple</li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3 class="footer-title">Contact</h3>
+          <div class="footer-contact">
+            <p>Consultation sur rendez-vous</p>
+            <p>En présentiel à Casablanca et Mohammedia</p>
+            <p>Confidentialité garantie</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-separator"></div>
+      
+      <div class="footer-bottom">
+        <div class="footer-brand">
+          <img src="images/logo.png" alt="Logo Nina Alaoui" class="footer-logo">
+          Nina Alaoui
+        </div>
+        <div class="footer-copyright">© <span id="year"></span> Nina Alaoui. Tous droits réservés.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function setHeroMinHeight() {
+      var header = document.querySelector('header');
+      var footer = document.querySelector('footer');
+      var hero = document.getElementById('hero');
+      if (!hero) return;
+      var headerH = header ? header.offsetHeight : 0;
+      var footerH = footer ? footer.offsetHeight : 0;
+      var available = window.innerHeight - headerH - footerH;
+      if (available > 0) {
+        hero.style.minHeight = available + 'px';
+      }
+    }
+
+    window.addEventListener('load', setHeroMinHeight);
+    window.addEventListener('resize', setHeroMinHeight);
+
+    // Burger menu functionality
+    function initBurgerMenu() {
+      var burgerMenu = document.querySelector('.burger-menu');
+      var mainNav = document.querySelector('.main-nav');
+      
+      if (!burgerMenu || !mainNav) return;
+      
+      burgerMenu.addEventListener('click', function() {
+        var isExpanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !isExpanded);
+        mainNav.classList.toggle('open');
+      });
+      
+      // Close menu when clicking on nav links
+      var navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          burgerMenu.setAttribute('aria-expanded', 'false');
+          mainNav.classList.remove('open');
+        });
+      });
+    }
+
+    window.addEventListener('load', initBurgerMenu);
+
+    // Make FAQ answers always visible on tablet/desktop, accordion on mobile
+    function updateFaqOpenState() {
+      var isDesktop = window.matchMedia('(min-width: 720px)').matches;
+      var items = document.querySelectorAll('#faq .faq-item');
+      if (!items || items.length === 0) return;
+      items.forEach(function(item) {
+        if (isDesktop) {
+          if (!item.hasAttribute('open')) item.setAttribute('open', '');
+        } else {
+          // Keep mobile as accordion: close by default
+          item.removeAttribute('open');
+        }
+      });
+    }
+
+    window.addEventListener('load', updateFaqOpenState);
+    window.addEventListener('resize', updateFaqOpenState);
+
+    // Reveal animation for Mes accompagnements thérapeutiques (adds .is-visible)
+    (function revealAccomp() {
+      var cards = document.querySelectorAll('.accomp .service-item');
+      if (!cards || cards.length === 0) return;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) {
+        cards.forEach(function(c){ c.classList.add('is-visible'); });
+        return;
+      }
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+        cards.forEach(function(c){ io.observe(c); });
+      } else {
+        // Fallback: show after a short delay
+        setTimeout(function(){ cards.forEach(function(c){ c.classList.add('is-visible'); }); }, 50);
+      }
+    })();
+
+    // Smooth scrolling for footer service links
+    (function initSmoothScroll() {
+      var smoothScrollLinks = document.querySelectorAll('.smooth-scroll');
+      if (!smoothScrollLinks || smoothScrollLinks.length === 0) return;
+      
+      smoothScrollLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          var targetId = this.getAttribute('href');
+          var targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            var headerHeight = document.querySelector('header') ? document.querySelector('header').offsetHeight : 0;
+            var targetPosition = targetElement.offsetTop - headerHeight - 20;
+            
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
+
+
